@@ -1,164 +1,219 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>URBAN THREADS — Women's fashion, curated</title>
-<meta name="description" content="Urban Threads curates women's and girls' clothing and links you to trusted stores.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Zyra Fashion</title>
+  <meta name="description" content="Discover curated women's fashion, clothing, footwear and accessories at Zyra Fashion.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
+
 <body>
-<a class="skip" href="#collection">Skip to products</a>
+  <a class="skip" href="#collection">Skip to products</a>
 
-<header class="site-header">
-  <div class="wrap bar">
-    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="nav">☰</button>
-    <a href="#home" class="logo" data-nav="home">URBAN THREADS</a>
-    <nav id="nav" class="nav" aria-label="Main">
-      <a href="#home" data-nav="home">Home</a>
-      <a href="#collection" data-cat="Dresses">Dresses</a>
-      <a href="#collection" data-cat="Tops">Tops</a>
-      <a href="#collection" data-cat="Kurtas">Kurtas</a>
-      <a href="#collection" data-cat="Bottoms">Bottoms</a>
-      <a href="#collection" data-cat="Footwear">Footwear</a>
-      <a href="#collection" data-cat="Accessories">Accessories</a>
-    </nav>
-    <button class="icon-btn" id="searchBtn" aria-label="Search products">⌕</button>
-  </div>
-</header>
+  <header class="site-header">
+    <div class="wrap bar hr-deskscr">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" width="100" alt="Zyra Fashion">
+      </a>
 
-<main>
-  <section id="home" class="hero wrap">
-    <div class="hero-copy">
-      <p class="tag">Autumn / Winter collection</p>
-      <h1>FIND YOUR EVERYDAY STYLE.</h1>
-      <p class="lead">Discover versatile essentials and standout pieces for every occasion.</p>
-      <div class="hero-cta">
-        <a class="btn btn-dark" href="#collection" data-nav="collection">Explore Collection</a>
-        <span class="muted">Curated styles. Trusted stores.</span>
+      <form class="header-search" id="desktopSearchForm">
+        <input
+          type="search"
+          id="desktopSearchInput"
+          placeholder="Search products..."
+          aria-label="Search products"
+        >
+        <button type="submit" aria-label="Search">⌕</button>
+      </form>
+
+      <a href="https://www.instagram.com/" class="header-contact instagram-link"
+         target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-instagram"></i>
+        <span>Instagram</span>
+      </a>
+
+      <a href="mailto:you@example.com" class="header-contact email-link">
+        <i class="fa-regular fa-envelope"></i>
+        <span>you@example.com</span>
+      </a>
+    </div>
+
+    <div class="hr-mobilescr">
+      <div class="hr-mobheader">
+        <a href="https://www.instagram.com/" class="header-contact instagram-link"
+           target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <a href="index.html" class="logo">
+          <img src="images/logo.png" width="100" alt="Zyra Fashion">
+        </a>
+
+        <a href="mailto:you@example.com" class="header-contact email-link"
+           aria-label="Email">
+          <i class="fa-regular fa-envelope"></i>
+        </a>
+      </div>
+
+      <form class="header-search" id="mobileSearchForm">
+        <input
+          type="search"
+          id="mobileSearchInput"
+          placeholder="Search products..."
+          aria-label="Search products"
+        >
+        <button type="submit" aria-label="Search">⌕</button>
+      </form>
+    </div>
+  </header>
+
+  <main>
+    <section id="collection" class="wrap section" aria-labelledby="colH">
+      <div class="head">
+        <h2 id="colH">The collection</h2>
+        <p class="muted" id="resultCount" aria-live="polite"></p>
+      </div>
+
+      <div class="pills" id="pills" role="group" aria-label="Filter by category"></div>
+
+      <div class="toolbar">
+        <div class="search">
+          <label for="searchInput" class="sr">Search products</label>
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="Search by name, brand or category"
+            autocomplete="off"
+          >
+          <button type="button" id="clearSearch" class="icon-btn"
+                  aria-label="Clear search" hidden>✕</button>
+        </div>
+
+        <div class="sort">
+          <label for="sortSelect">Sort by</label>
+          <select id="sortSelect">
+            <option value="featured">Featured</option>
+            <option value="low">Price: Low to High</option>
+            <option value="high">Price: High to Low</option>
+            <option value="az">Name: A to Z</option>
+            <option value="new">Newest</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid" id="productGrid"></div>
+
+      <p id="emptyState" class="muted" hidden>
+        No products found. Try another search or category.
+      </p>
+    </section>
+
+    <section class="wrap section" aria-labelledby="whyH">
+      <div class="head">
+        <h2 id="whyH">Why shop with us?</h2>
+      </div>
+
+      <div class="why">
+        <div>
+          <span class="ico" aria-hidden="true">✦</span>
+          <h3>Curated finds</h3>
+          <p class="muted">Discover selected fashion for your everyday style.</p>
+        </div>
+        <div>
+          <span class="ico" aria-hidden="true">◈</span>
+          <h3>Established retailers</h3>
+          <p class="muted">Explore products through external retailer links.</p>
+        </div>
+        <div>
+          <span class="ico" aria-hidden="true">⌕</span>
+          <h3>Easy discovery</h3>
+          <p class="muted">Search, filter and sort to find products quickly.</p>
+        </div>
+        <div>
+          <span class="ico" aria-hidden="true">↗</span>
+          <h3>Direct shopping links</h3>
+          <p class="muted">Visit the seller's website to shop.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap hr-footer">
+      <img src="images/logo.png" width="100" alt="Zyra Fashion">
+      <p class="muted">
+        As an affiliate, we may earn a commission from qualifying purchases
+        at no extra cost to you. As an affiliate, we may earn a commission from qualifying purchases
+        at no extra cost to you. As an affiliate, we may earn a commission
+      </p>
+    </div>
+
+    <div class="wrap foot-bottom">
+      <p class="muted">
+        Copyright © <span id="year"></span> Zyra Fashion. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <div class="modal" id="modal" hidden>
+    <div class="backdrop" data-close></div>
+
+    <div class="dialog" role="dialog" aria-modal="true"
+         aria-labelledby="mTitle" tabindex="-1">
+      <button class="icon-btn close" data-close
+              aria-label="Close product details">✕</button>
+
+      <div class="m-gallery">
+        <div class="media m-main" id="mMain">
+          <img id="mImg" alt="">
+        </div>
+        <div class="thumbs" id="mThumbs"></div>
+      </div>
+
+      <div class="m-info">
+        <p class="brand" id="mBrand"></p>
+        <h2 id="mTitle"></h2>
+        <div class="price" id="mPrice"></div>
+        <p id="mDesc"></p>
+
+        <div class="opt" id="mSizeWrap">
+          <p class="opt-l">Size <span class="muted" id="mSizeVal"></span></p>
+          <div class="chips" id="mSizes" role="group" aria-label="Size"></div>
+        </div>
+
+        <div class="opt" id="mColorWrap">
+          <p class="opt-l">Colour <span class="muted" id="mColorVal"></span></p>
+          <div class="chips" id="mColors" role="group" aria-label="Colour"></div>
+        </div>
+
+        <ul class="highlights" id="mHigh"></ul>
+        <p class="notice" id="mNotice" role="alert"></p>
+
+        <button class="btn btn-dark block" id="shopBtn" type="button">
+          SHOP NOW
+        </button>
+        <button class="btn btn-ghost block" type="button" data-close>
+          Continue Exploring
+        </button>
+
+        <p class="fine">
+          As an affiliate, we may earn a commission from qualifying purchases.
+          You'll leave this site to buy from the retailer.
+        </p>
       </div>
     </div>
-    <div class="hero-img media" data-label="Urban Threads">
-      <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1000&q=80" alt="Woman in a stylish dress on a city street">
-    </div>
-  </section>
-
-  <section class="wrap section" aria-labelledby="catH">
-    <div class="head"><h2 id="catH">Shop by category</h2></div>
-    <div class="cat-grid" id="catGrid"></div>
-  </section>
-
-  <section id="collection" class="wrap section" aria-labelledby="colH">
-    <div class="head"><h2 id="colH">The collection</h2><p class="muted" id="resultCount" aria-live="polite"></p></div>
-    <div class="pills" id="pills" role="group" aria-label="Filter by category"></div>
-    <div class="toolbar">
-      <div class="search">
-        <label for="searchInput" class="sr">Search products</label>
-        <input id="searchInput" type="search" placeholder="Search by name, brand or category" autocomplete="off">
-        <button type="button" id="clearSearch" class="icon-btn" aria-label="Clear search" hidden>✕</button>
-      </div>
-      <div class="sort">
-        <label for="sortSelect">Sort by</label>
-        <select id="sortSelect">
-          <option value="featured">Featured</option>
-          <option value="low">Price: Low to High</option>
-          <option value="high">Price: High to Low</option>
-          <option value="az">Name: A to Z</option>
-          <option value="new">Newest</option>
-        </select>
-      </div>
-    </div>
-    <div class="grid" id="productGrid"></div>
-    <div class="empty" id="emptyState" hidden>
-      <h3>No pieces match your search</h3>
-      <p class="muted">Try a different word, or clear the filters to see everything.</p>
-      <button class="btn btn-dark" type="button" id="resetBtn">Clear search and filters</button>
-    </div>
-  </section>
-
-  <section class="wrap section" aria-labelledby="featH">
-    <div class="head"><h2 id="featH">Featured</h2></div>
-    <div class="grid" id="featuredGrid"></div>
-  </section>
-
-  <section class="wrap section" aria-labelledby="trendH">
-    <div class="head"><h2 id="trendH">Trending now</h2></div>
-    <div class="grid" id="trendingGrid"></div>
-  </section>
-
-  <section class="wrap section" aria-labelledby="inspH">
-    <div class="head"><h2 id="inspH">Style inspiration</h2></div>
-    <div class="insp">
-      <figure class="media" data-label="Casual wear"><img loading="lazy" src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=800&q=80" alt="Relaxed casual outfit for women"><figcaption>Casual wear</figcaption></figure>
-      <figure class="media" data-label="Smart casual"><img loading="lazy" src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?auto=format&fit=crop&w=800&q=80" alt="Smart casual look with blouse and trousers"><figcaption>Smart casual</figcaption></figure>
-      <figure class="media" data-label="Streetwear"><img loading="lazy" src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80" alt="Streetwear look with sneakers"><figcaption>Streetwear</figcaption></figure>
-    </div>
-  </section>
-
-  <section class="wrap section" aria-labelledby="whyH">
-    <div class="head"><h2 id="whyH">Why shop with us?</h2></div>
-    <div class="why">
-      <div><span class="ico" aria-hidden="true">✦</span><h3>Curated finds</h3><p class="muted">A short list of pieces we like, not an endless catalogue.</p></div>
-      <div><span class="ico" aria-hidden="true">◈</span><h3>Established retailers</h3><p class="muted">Links go to well-known stores such as Amazon and Myntra.</p></div>
-      <div><span class="ico" aria-hidden="true">⌕</span><h3>Easy discovery</h3><p class="muted">Search, filter and sort to find the right piece quickly.</p></div>
-      <div><span class="ico" aria-hidden="true">↗</span><h3>Direct shopping links</h3><p class="muted">One click takes you to the seller's product page.</p></div>
-    </div>
-  </section>
-
-  <section class="news wrap" aria-labelledby="newsH">
-    <div>
-      <h2 id="newsH">New drops, in your inbox</h2>
-      <p>This form is a demo. It checks your email format but does not subscribe you to any mailing list or store your address.</p>
-    </div>
-    <form id="newsForm" novalidate>
-      <label for="newsEmail" class="sr">Email address</label>
-      <input id="newsEmail" type="email" placeholder="you@example.com" required>
-      <button class="btn btn-light" type="submit">Notify me</button>
-      <p id="newsMsg" role="status" class="news-msg"></p>
-    </form>
-  </section>
-</main>
-
-<footer class="footer">
-  <div class="wrap foot-grid">
-    <div><p class="logo">URBAN THREADS</p><p class="muted">A fashion discovery site for girls and women. We don't sell products — we point you to the stores that do.</p></div>
-    <div><h3>Explore</h3><ul><li><a href="#home" data-nav="home">Home</a></li><li><a href="#collection" data-nav="collection">Collection</a></li><li><a href="#newsH" data-nav="newsH">Newsletter</a></li></ul></div>
-    <div><h3>Categories</h3><ul id="footCats"></ul></div>
-    <div><h3>Contact</h3><ul><li>hello@example.com</li><li>+91 00000 00000</li><li class="social"><a href="#" aria-label="Instagram">Instagram</a> <a href="#" aria-label="X">X</a> <a href="#" aria-label="YouTube">YouTube</a></li></ul></div>
   </div>
-  <div class="wrap foot-bottom">
-    <p class="muted">As an affiliate, we may earn a commission from qualifying purchases at no extra cost to you.</p>
-    <p class="muted">© <span id="year"></span> Urban Threads. All rights reserved.</p>
-  </div>
-</footer>
 
-<div class="modal" id="modal" hidden>
-  <div class="backdrop" data-close></div>
-  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="mTitle" tabindex="-1">
-    <button class="icon-btn close" data-close aria-label="Close product details">✕</button>
-    <div class="m-gallery">
-      <div class="media m-main" id="mMain"><img id="mImg" alt=""></div>
-      <div class="thumbs" id="mThumbs"></div>
-    </div>
-    <div class="m-info">
-      <p class="brand" id="mBrand"></p>
-      <h2 id="mTitle"></h2>
-      <div class="price" id="mPrice"></div>
-      <p id="mDesc"></p>
-      <div class="opt" id="mSizeWrap"><p class="opt-l">Size <span class="muted" id="mSizeVal"></span></p><div class="chips" id="mSizes" role="group" aria-label="Size"></div></div>
-      <div class="opt" id="mColorWrap"><p class="opt-l">Colour <span class="muted" id="mColorVal"></span></p><div class="chips" id="mColors" role="group" aria-label="Colour"></div></div>
-      <ul class="highlights" id="mHigh"></ul>
-      <p class="notice" id="mNotice" role="alert"></p>
-      <button class="btn btn-dark block" id="shopBtn" type="button">SHOP NOW</button>
-      <button class="btn btn-ghost block" type="button" data-close>Continue Exploring</button>
-      <p class="fine">As an affiliate, we may earn a commission from qualifying purchases at no extra cost to you. You'll leave this site to buy from the retailer.</p>
-    </div>
-  </div>
-</div>
-
-<script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
